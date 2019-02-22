@@ -1,3 +1,8 @@
 <article>
-    article article article
+  <div class="image"><img src="{{article.urlToImage}}" alt="" class="article-img"></div>
+  <div class="article">
+    <h2>{{article.title}}</h2>
+    <p>{{article.content}}</p>
+    <div class="article-date">Date: {{article.publishedAt | date:'long'}}</div>
+  </div>
 </article>

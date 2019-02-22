@@ -11,8 +11,8 @@
         <div><a id="{{article.id}}" href="/article/{{article.id}}">Read more...</a></div>
       </div>
       <div class="article-controls">
-        <div><button>Edit</button></div>
-        <div><button>Delete</button></div>
+        <div><button [disabled]="!isActive">Edit</button></div>
+        <div><button [disabled]="!isActive">Delete</button></div>
       </div>
     </div>
   </li>
@@ -20,3 +20,4 @@
 <div class="load-more">
   <button *ngIf="show < newsList.length" (click)="increaseShow()">Load More</button>
 </div>
+<!--<div>{{isActive}}</div>-->

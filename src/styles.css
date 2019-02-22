@@ -90,8 +90,14 @@ h2 {
 }
 
 article {
-    padding: 10px;
-    margin: 0 auto;
-    max-width: 1200px;
+  padding: 10px;
+  margin: 0 auto;
+  max-width: 1200px;
+  display: flex;
+}
+
+article .article-img {
+  max-width: 300px;
+  margin-right: 10px;
 }
 

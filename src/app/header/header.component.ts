@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsListService } from '../news-list.service';
 
 @Component({
   selector: 'app-header',
@@ -7,16 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  public isActive: boolean = null;
-
   checkSelected(e) {
-    if(e.target.checked){
-      this.isActive = true;
-    } else { this.isActive = null; }
+    if (e.target.checked){
+      this.newsListService.isActive = true;
+      this.newsListService.isActiveEventEmitter.emit(this.newsListService.isActive);
+    } else {
+      this.newsListService.isActive = null;
+      this.newsListService.isActiveEventEmitter.emit(this.newsListService.isActive);
+    }
  }
 
   title = 'BBC News';
-  constructor() { }
+  constructor(private newsListService: NewsListService) {}
 
   ngOnInit() {
   }
