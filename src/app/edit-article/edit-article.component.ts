@@ -1,27 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NewsListComponent } from '../news-list/news-list.component';
 import {NewsListService} from '../news-list.service';
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-view-article',
-  templateUrl: './view-article.component.html',
-  styleUrls: ['./view-article.component.css'],
-  // providers: [NewsListService]
+  selector: 'app-edit-article',
+  templateUrl: './edit-article.component.html',
+  styleUrls: ['./edit-article.component.css']
 })
-
-export class ViewArticleComponent implements OnInit {
-
-  public isActive: boolean = null;
+export class EditArticleComponent implements OnInit {
 
   public newsList: any = [];
-  constructor(private route: ActivatedRoute, private newsListService: NewsListService) {
+  constructor(private route: ActivatedRoute, private newsListService: NewsListService, private location: Location) {
     this.newsList = this.newsListService.newsList;
   }
 
   public article: any;
-
-
+  
+  options = "true";
+  
+  goBack() {
+    this.location.back();
+    console.log( 'goBack()...' );
+  }
+  
+  saved() {
+    console.log( 'saved...' );
+  }
+  
   ngOnInit() {
     this.route.params.subscribe(params => {
       let articleId = params['id'];
@@ -32,10 +38,6 @@ export class ViewArticleComponent implements OnInit {
 
     });
 
-    this.newsListService.isActiveEventEmitter.subscribe((status: boolean) => {
-      this.isActive = status;
-      console.log(status);
-    });
   }
 
 }

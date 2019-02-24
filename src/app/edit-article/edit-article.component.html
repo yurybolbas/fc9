@@ -1,0 +1,59 @@
+<article class="form">
+  <div class="column">
+    <div>
+      <label>
+        <span class="label">Title</span>
+        <input type="text" value="{{article.title}}">
+      </label>
+    </div>
+    <div>
+      <label>
+        <span class="label">Short description</span>
+        <input type="text" value="{{article.description}}">
+      </label>
+    </div>
+    <div>
+        <label>
+          <span class="label">Content</span>
+          <textarea value="{{article.content}}"></textarea>
+        </label>
+      </div>
+  </div>
+  <div class="column">
+    <div>
+      <span class="label">
+        Image
+        <label><input name="options" [(ngModel)]="options" type="radio" [value]="true" />URL</label>
+        <label><input name="options" [(ngModel)]="options" type="radio" [value]="false" />File</label>
+      </span>
+      <label *ngIf="options">
+        <input type="text" value="{{article.urlToImage}}">
+      </label>
+      <label *ngIf="!options">
+        <input type="file">
+      </label>
+    </div>
+    <div>
+      <label>
+        <span class="label">Date</span>
+        <input type="text" value="{{article.publishedAt}}">
+      </label>
+    </div>
+    <div>
+      <label>
+        <span class="label">Author</span>
+        <input type="text" value="{{article.author}}">
+      </label>
+    </div>
+    <div>
+      <label>
+        <span class="label">Source URL</span>
+        <input type="text" value="{{article.url}}">
+      </label>
+    </div>
+    <div class="edit-controls">
+      <button (click)='saved()' routerLink="/article/{{article.id}}">Save</button>
+      <button (click)='goBack()'>Cancel</button>
+    </div>
+  </div>
+</article>

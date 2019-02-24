@@ -11,7 +11,7 @@
         <div><a id="{{article.id}}" href="/article/{{article.id}}">Read more...</a></div>
       </div>
       <div class="article-controls">
-        <div><button [disabled]="!isActive">Edit</button></div>
+        <div><button [disabled]="!isActive" routerLink="/edit-article/{{article.id}}">Edit</button></div>
         <div><button [disabled]="!isActive">Delete</button></div>
       </div>
     </div>
