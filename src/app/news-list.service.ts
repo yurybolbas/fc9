@@ -1,4 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -6,12 +9,17 @@ import {EventEmitter, Injectable} from '@angular/core';
 
 export class NewsListService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   public isActiveEventEmitter: EventEmitter<boolean> = new EventEmitter();
 
   public isActive: boolean = null;
 
+  sourcesUrl = "https://newsapi.org/v2/sources?apiKey=2b17f156630a4c0caf074c1251e75c02";
+  public get(url: string): Observable<any>{
+    return this.http.get<any>(this.sourcesUrl);
+  }
+  
   newsList = [
     {
       id: 'bbc-news-00',
