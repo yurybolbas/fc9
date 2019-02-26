@@ -8,10 +8,10 @@
           <div class="article-date">Date: {{article.publishedAt | date }}</div>
         </div>
         <p>{{article.description}}</p>
-        <div><a id="{{i}}" href="/article/{{i}}">Read more...</a></div>
+        <div><a id="{{i}}" routerLink="/article/{{i}}">Read more...</a></div>
       </div>
       <div class="article-controls">
-        <div><button [disabled]="!isActive" routerLink="/edit-article/{{article.id}}">Edit</button></div>
+        <div><button [disabled]="!isActive" routerLink="/edit-article/{{i}}">Edit</button></div>
         <div><button [disabled]="!isActive">Delete</button></div>
       </div>
     </div>
