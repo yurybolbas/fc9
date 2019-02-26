@@ -1,5 +1,5 @@
 <ul class="news-list">
-  <li *ngFor="let article of newsList | slice:0:show; let i=index">
+  <li *ngFor="let article of newsListService.newsList | slice:0:show; let i=index">
     <div>
       <div class="image"><img src="{{article.urlToImage}}" alt=""></div>
       <div class="article">
@@ -8,7 +8,7 @@
           <div class="article-date">Date: {{article.publishedAt | date }}</div>
         </div>
         <p>{{article.description}}</p>
-        <div><a id="{{article.id}}" href="/article/{{article.id}}">Read more...</a></div>
+        <div><a id="{{i}}" href="/article/{{i}}">Read more...</a></div>
       </div>
       <div class="article-controls">
         <div><button [disabled]="!isActive" routerLink="/edit-article/{{article.id}}">Edit</button></div>
@@ -18,6 +18,6 @@
   </li>
 </ul>
 <div class="load-more">
-  <button *ngIf="show < newsList.length" (click)="increaseShow()">Load More</button>
+  <button *ngIf="show < newsListService.newsList.length" (click)="increaseShow()">Load More</button>
 </div>
 <!--<div>{{isActive}}</div>-->

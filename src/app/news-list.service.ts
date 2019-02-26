@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import {map, take, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +9,48 @@ import { Observable } from 'rxjs';
 
 export class NewsListService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   public isActiveEventEmitter: EventEmitter<boolean> = new EventEmitter();
 
   public isActive: boolean = null;
 
-  sourcesUrl = "https://newsapi.org/v2/sources?apiKey=2b17f156630a4c0caf074c1251e75c02";
-  public get(url: string): Observable<any>{
-    return this.http.get<any>(this.sourcesUrl);
+  newsList = [];
+
+  // public articles: any = [];
+
+  sourcesUrl = 'https://newsapi.org/v2/sources?apiKey=2b17f156630a4c0caf074c1251e75c02';
+
+  public getSources(url: string): Observable<any> {
+    return this.httpClient.get<any>(this.sourcesUrl).pipe(
+      map((response) => {
+        // console.log(response.sources);
+        return response.sources;
+      })
+    );
   }
-  
-  newsList = [
+
+  public getSource(url: string): Observable<any> {
+    // return this.httpClient.get<any>(url);
+    return this.httpClient.get<any>(url).pipe(
+      map((response) => {
+        // console.log(response.articles);
+        return response.articles;
+      })
+    );
+  }
+
+  updateID(id) {
+    let sourceUrl = `https://newsapi.org/v2/top-headlines?sources=${id}&apiKey=2b17f156630a4c0caf074c1251e75c02`;
+    // console.log(sourceUrl);
+    this.getSource(sourceUrl).subscribe((value => {this.newsList = value; }));
+    // console.log(this.newsList);
+  }
+
+
+  // newsList = this.getSource(this.sourceUrl);
+
+    /*newsList = [
     {
       id: 'bbc-news-00',
       source: {
@@ -161,7 +191,6 @@ export class NewsListService {
       publishedAt: '2019-02-17T00:28:45Z',
       content: null
     }
-  ];
-
+  ];*/
 
 }

@@ -14,9 +14,9 @@ export class ViewArticleComponent implements OnInit {
 
   public isActive: boolean = null;
 
-  public newsList: any = [];
+  // public newsList: any = [];
   constructor(private route: ActivatedRoute, private newsListService: NewsListService) {
-    this.newsList = this.newsListService.newsList;
+    // this.newsList = this.newsListService.newsList;
   }
 
   public article: any;
@@ -25,10 +25,8 @@ export class ViewArticleComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       let articleId = params['id'];
-      console.log(articleId);
-      this.article = this.newsList.filter(x => x.id == articleId)[0];
-      // this.article =  JSON.stringify(this.newsList.filter(x => x.id == articleId)[0]);
-      console.log(this.article);
+      this.article = this.newsListService.newsList[+articleId];
+      console.log(this.newsListService.newsList);
 
     });
 
@@ -39,3 +37,4 @@ export class ViewArticleComponent implements OnInit {
   }
 
 }
+

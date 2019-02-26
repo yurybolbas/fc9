@@ -17,10 +17,10 @@ export class NewsListComponent implements OnInit {
 
   public isActive: boolean = null;
 
-  public newsList: any = [];
+  // public newsList: any = [];
 
   constructor(private newsListService: NewsListService) {
-    this.newsList = this.newsListService.newsList;
+    // this.newsList = this.newsListService.newsList;
   }
 
   ngOnInit() {
