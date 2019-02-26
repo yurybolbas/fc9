@@ -12,7 +12,7 @@ import { EditArticleComponent } from './edit-article/edit-article.component';
 import { FormsModule } from '@angular/forms';
 import { AddArticleComponent } from './add-article/add-article.component';
 
-const AppRoutes: Routes = [
+export const AppRoutes: Routes = [
   {path: '', component: NewsListComponent},
   {path: 'article/:id', component: ViewArticleComponent},
   {path: 'edit-article/:id', component: EditArticleComponent},
@@ -33,6 +33,9 @@ const AppRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule
+  ],
+  exports: [
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
